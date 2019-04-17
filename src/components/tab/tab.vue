@@ -50,7 +50,16 @@ export default {
         }
     },
     computed:{
-
+        selectedLable:{
+            get(){
+                return this.tabs[this.index].label
+            },
+            set(newVal){
+                this.index = this.tabs.findIndex(()=>{
+                    
+                })
+            }
+        }
     },
     mounted(){
         this.onChange(this.index)

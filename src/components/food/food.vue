@@ -1,8 +1,23 @@
 <template>
     <transition name="move" @after-leave="afterLeave">
-        <div class="food" v-show="visible">
-
-        </div>
+        <cube-scroll ref="scroll">
+            <div class="images-header"></div>
+            <div class="content"></div>
+            <split v-show="food.info"></split>
+            <div class="info" v-show="food.info">
+                <h1 class="title">商品信息</h1>
+                <p class="text">{{food.info}}</p>
+            </div>
+            <split></split>
+            <div class="rating">
+                <h1 class="title">商品评价</h1>
+                <rating-select></rating-select>
+            </div>
+            <div class="rating-wrapper">
+                <ul></ul>
+                <div class="no-rating"></div>
+            </div>
+        </cube-scroll>
     </transition>
 </template>
 
