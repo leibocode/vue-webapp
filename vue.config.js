@@ -1,8 +1,9 @@
 const webpack = require('webpack')
-const { resolve } = require('path')
+const path = require('path')
 
-
-const r = path=> resolve(__dirname,path)
+function resolve(dir){
+  return path.join(__dirname,dir)
+}
 
 module.exports = {
   css: {
@@ -37,8 +38,8 @@ module.exports = {
   },
   chainWebpack(config){
     config.resolve.alias
-        .set('components',r('src/components'))
-        .set('common',r('src/common'))
-        .set('api',r('src/api'))
+                  .set('components',resolve('src/components'))
+                  .set('common',resolve('src/common'))
+                  .set('api',resolve('src/api'))
   }
 }

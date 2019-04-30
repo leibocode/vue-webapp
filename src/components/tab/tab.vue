@@ -1,25 +1,24 @@
 <template>
     <div class="tab">
-        <cube-tab-bar :useTransition=false
+        <cube-tab-bar :useTransition=false 
         :showSlider=true
         :v-model="selectedLabel"
         :data="tabs"
-        ref="tabbar"
-        class="border-bottom-1px">
-        </cube-tab-bar>
+        :ref="tabBar"
+         class="border-bottom-1px"></cube-tab-bar>
         <div class="slider-wrapper">
-            <cube-slider :loop=false
+            <cube-slide :loop=false
             :auto-play=false
             :show-dots=false
             :initial-index="index"
             ref="slider"
-            :options="slideOptions"
+            :options="sliderOptions"
             @scroll="onScroll"
             @change="onChange">
-               <cube-slider-item v-for="(tab,index) in tabs" :key="index">
+               <cube-slide-item v-for="(tab,index) in tabs" :key="index">
                    <component ref="component" :is="tab.component" :data="tab.data"></component>
-               </cube-slider-item>
-            </cube-slider>
+               </cube-slide-item>
+            </cube-slide>
         </div>
     </div>
 </template>
@@ -41,22 +40,24 @@ export default {
     },
     data(){
         return {
-            index:this.initialIndex, //当前选中的tab-item
+            index:this.initialIndex,
             slideOptions:{
-                listenScroll:true,
-                probeType:3,
-                directionLockThreshold:0
+                listenScroll:{
+                    listenScroll:true,
+                    probeType:3,
+                    directionLockThreshold: 0
+                }
             }
         }
     },
     computed:{
-        selectedLable:{
+        selectedLabel:{
             get(){
                 return this.tabs[this.index].label
             },
             set(newVal){
-                this.index = this.tabs.findIndex(()=>{
-                    
+                this.index = this.tabs.findIndex((value)=>{
+                   return value.label === newVal
                 })
             }
         }
@@ -65,22 +66,35 @@ export default {
         this.onChange(this.index)
     },
     methods:{
-
+        onScroll(pos){
+            const tabBarWidth = this.$refs.tabBar.$el.clientWidth
+            const slideWidth = this.$refs.slide.slide.scrollerWidth
+            const transform = -pos.x / slideWidth * tabBarWidth
+            this.$refs.tabBar.setSliderTransform(transform)
+        },
+        onChange(current) {
+            this.index = current
+            const instance = this.$refs.component[current]
+            if (instance && instance.fetch) {
+            instance.fetch()
+            }
+        }
     }
 }
 </script>
 
-<style lang="stylus" scoped>
-   @import "~common/stylus/veriable";
-       .tab
-           display:flex;
-           flex-direction:column;
-           height:100%;
-           >>> .cube-tab
-            padding:10px 0
-           .slide-wrapper
-            flex:1,
-            overflow:hidden
-</style>
 
+<style lang="stylus" scoped>
+  @import "~common/stylus/variable";
+
+  .tab 
+    display:flex
+    flex-direction :column
+    height:100%
+    >>> .cube-tab
+     padding:10px 0
+    .slide-wrapper
+        flex:1
+        overflow: hidden
+</style>
 

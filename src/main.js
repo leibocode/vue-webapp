@@ -2,9 +2,11 @@
  * 入口文件
  */
 import Vue from 'vue'
-import './cube-ui'
 import App from './App.vue'
+import './cube-ui'
 import './register'
+
+import 'common/stylus/index.styl'
 
 Vue.config.productionTip = false
 
