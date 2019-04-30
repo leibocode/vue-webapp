@@ -24,7 +24,6 @@ export default {
 
 <style lang="stylus" scoped>
   @import "~common/stylus/mixin"
-
   .support-ico
     display:inline-block
     background-repeat:no-repeat
@@ -33,5 +32,4 @@ export default {
       width:12px
       height:12px
       background-size:12px 12px
-      
 </style>

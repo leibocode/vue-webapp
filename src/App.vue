@@ -1,26 +1,30 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app" @touchmove.prevent>
+        <v-header></v-header>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import VHeader from 'components/v-hreader/v-hreader'
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+    data(){
+        return {}
+    },
+    computed:{
+        
+    },
+    components:{
+        VHeader
+    }
 }
 </script>
-<style lang="stylus">
+
+<style lang="stylus" scoped>
 #app
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
+ .tab-wrapper
+   position:fixed
+   top:136px
+   left:0
+   right:0
+   bottom:0
 </style>
