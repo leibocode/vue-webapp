@@ -2,7 +2,7 @@
     <div class="goods">
         <div class="scroll-nav-wrapper">
             <cube-scroll-nav>
-
+              
             </cube-scroll-nav>
         </div>
         <div class="shop-cart-wrapper"></div>
