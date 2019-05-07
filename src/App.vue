@@ -18,7 +18,11 @@ import Seller from 'components/seller/seller'
 
 export default {
     data(){
-        return {}
+        return {
+            seller: {
+                id:qs.parse(location.search).id
+            }
+        }
     },
     computed:{
         tabs(){
@@ -41,6 +45,18 @@ export default {
                    seller: this.seller
                 }
             }]
+        }
+    },
+    created(){
+        this._getSeller()
+    },
+    methods:{
+        _getSeller(){
+            getSeller({
+                id:this.seller.id
+            }).then((seller)=>{
+                this.seller =Object.assign({},this.seller,seller)
+            })
         }
     },
     components:{
