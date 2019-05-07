@@ -1,11 +1,37 @@
 <template>
     <div class="goods">
         <div class="scroll-nav-wrapper">
-            <cube-scroll-nav>
-              
+            <cube-scroll-nav
+            :side=true
+            :data="goods"
+            :options="scrollOptions"
+            v-if="goods.length"
+            >
+             <template slot="bar" slot-scope="props">
+                <cube-scroll-nav-bar
+                direction="vertical"
+                :labels="props.labels"
+                :txts="barTxts"
+                :current="props.current">
+                  <template slot-scope="props">
+                    <div class="text">
+                      <support-ico 
+                      v-if="props.txt.type>=1"
+                      :size=3
+                      :type="props.txt.type"></support-ico>
+                      <span>{{props.txt.type}}</span>
+                      <span class="num" v-if="props.txt.count">
+                        <bubble :num="props.txt.count"></bubble>
+                      </span>
+                    </div>
+                  </template>
+                </cube-scroll-nav-bar>
+             </template>
             </cube-scroll-nav>
         </div>
-        <div class="shop-cart-wrapper"></div>
+        <div class="shop-cart-wrapper">
+          <shop-cart ref="shopCart"></shop-cart>
+        </div>
     </div>
 </template>
 
@@ -38,11 +64,35 @@ export default {
             }
         }
     },
+    computed:{
+      seller(){
+        return this.data.seller
+      },
+      selectedFood(){
+        let foods = []
+        this.goods.forEach((good)=>{
+          good.foods.forEach((food)=>{
+            if(food.count){
+              foods.push(food)
+            }
+          })
+        })
+        return foods
+      }
+    },
     methods:{
         fetch(){
-            if(!this.fetched){
-                
-            }
+          if(!this.fetched){
+            this.fetched = true
+            getGoods({
+              id:this.seller.id
+            }).then((goods)=>{
+              this.goods = goods
+            })
+          }
+        },
+        selectedFood(food){
+          
         }
     },
     computed:{

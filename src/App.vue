@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import qs from 'query-string'
+import { getSeller } from 'api'
 import VHeader from 'components/v-header/v-header'
 import Tab from 'components/tab/tab'
 import Goods from 'components/goods/goods'
@@ -24,17 +26,17 @@ export default {
                 label:'商品',
                 component: Goods,
                 data:{
-
+                    seller:this.seller
                 }
             },{
                 label:'评论',
-                component:Ratings,
+                component:'',
                 data:{
                     seller:this.seller
                 }
             },{
                 label: '商家',
-                component: Seller,
+                component: '',
                 data: {
                    seller: this.seller
                 }

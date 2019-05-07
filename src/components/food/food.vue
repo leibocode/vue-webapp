@@ -11,7 +11,7 @@
             <split></split>
             <div class="rating">
                 <h1 class="title">商品评价</h1>
-                <rating-select></rating-select>
+                <!-- <rating-select></rating-select> -->
             </div>
             <div class="rating-wrapper">
                 <ul></ul>
@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import moment from 'moment'
+// import moment from 'moment'
 import CartControl from 'components/cart-control/cart-control'
-import RatingsSelect from 'components/rating-select/rating-select'
+// import RatingsSelect from 'components/rating-select/rating-select'
 import Split from 'components/split/split'
 
 
@@ -70,9 +70,9 @@ export default {
         addFood(target){
             this.$emit(EVENT_ADD,target)
         },
-        format(time){
-            return moment(time).format('YYYY-MM-DD hh:mm')
-        }
+        // format(time){
+        //     return moment(time).format('YYYY-MM-DD hh:mm')
+        // }
     },
     components:{
 
