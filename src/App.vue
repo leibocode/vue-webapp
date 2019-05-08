@@ -15,13 +15,12 @@ import Tab from 'components/tab/tab'
 import Goods from 'components/goods/goods'
 import Ratings from 'components/ratings/ratings'
 import Seller from 'components/seller/seller'
+const appData = require('./data.json')
 
 export default {
     data(){
         return {
-            seller: {
-                id:qs.parse(location.search).id
-            }
+            seller: {}
         }
     },
     computed:{
@@ -48,7 +47,7 @@ export default {
         }
     },
     created(){
-        this._getSeller()
+        this.seller = appData.seller
     },
     methods:{
         _getSeller(){

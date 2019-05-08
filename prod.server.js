@@ -14,6 +14,7 @@ app.use(function(req,res,next){
 })
 
 router.get('/seller',function(req,res){
+    console.log(seller)
     res.json({
         errno:0,
         data:seller
@@ -34,7 +35,7 @@ router.get('/ratings',function(req,res,next){
     })
 })
 
-app.use('api',router)
+app.use('/api',router)
 
 app.use(express.static('./dist'))
 

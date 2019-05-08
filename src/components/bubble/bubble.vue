@@ -1,18 +1,18 @@
 <template>
-    <span class="bubble">
-        {{ num }}
-    </span>
+  <span class="bubble">
+    {{ num }}
+  </span>
 </template>
 
 <script>
-export default {
-    name:'bubble',
-    props:{
-        num:{
-            type:Number
-        }
+  export default {
+    name: 'bubble',
+    props: {
+      num: {
+        type: Number
+      }
     }
-}
+  }
 </script>
 
 <style lang="stylus" scoped>
