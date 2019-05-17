@@ -75,7 +75,7 @@
 </template>
 
 <script>
-  import { getGoods } from 'api'
+  import { getGoods } from '../../api/index'
   import CartControl from 'components/cart-control/cart-control'
   import ShopCart from 'components/shop-cart/shop-cart'
   import Food from 'components/food/food'
@@ -138,9 +138,7 @@
       fetch() {
         if (!this.fetched) {
           this.fetched = true
-          getGoods({
-            id: this.seller.id
-          }).then((goods) => {
+          getGoods.then((goods)=>{
             this.goods = goods
           })
         }

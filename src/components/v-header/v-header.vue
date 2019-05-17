@@ -45,6 +45,10 @@
         }
       }
     },
+    created(){
+      console.log('v-hreader')
+      console.log(this.seller)
+    },
     methods: {
       showDetail() {
         this.headerDetailComp = this.headerDetailComp || this.$createHeaderDetail({

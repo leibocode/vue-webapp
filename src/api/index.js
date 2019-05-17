@@ -7,5 +7,6 @@ const getRatings = get('api/ratings')
 export {
     getSeller,
     getGoods,
-    getRatings
+    getRatings,
+    get
 }
